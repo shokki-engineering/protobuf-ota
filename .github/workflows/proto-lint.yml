@@ -1,0 +1,29 @@
+# Lints every .proto against the Google AIP rules on each push and pull
+# request. Problems are annotated inline on the diff and summarised on the job.
+#
+# https://github.com/the-protobuf-project/setup-google-api-linter
+name: Proto Lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint:
+    name: api-linter
+    runs-on: ubuntu-latest
+    permissions:
+      # Inline annotations are written through the Checks API.
+      contents: read
+      checks: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: the-protobuf-project/setup-google-api-linter@v1
+        with:
+          # Resolves the deps in buf.yaml, so `import "google/api/…"` is
+          # found without committing googleapis to this repository.
+          buf: true
+          paths: "**/*.proto"

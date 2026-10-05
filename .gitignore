@@ -1,0 +1,9 @@
+# Generated code. Never committed: a generated tree in git is a merge
+# conflict generator, and scripts/lint.sh already exempts it from the
+# 200-line cap.
+/gen/
+
+# Descriptor sets produced by buf build.
+*.binpb
+
+.DS_Store
