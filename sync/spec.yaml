@@ -1,0 +1,11 @@
+# The OpenTravel publications this schema is generated from. See docs/spec.md.
+#
+# version is the date of commit, YYYY-MM-DD. The labels are OpenTravel's own
+# names for the two publications read, and go into every generated banner.
+repository: https://github.com/OpenTravel/OpenTravel-Specifications
+commit: 28dcc880acf2d22a8a5e93d20174971080b6846c
+version: 2024-11-26
+suite: OTA1.0/OTA2017B/OpenTravel_2017B_XML
+suite_label: 2017B
+codelist: CodeLists/OTA_CodeLists_2024_09_04/OpenTravel_CodeList_2024_9_4.xlsm
+codelist_label: 2024-09-04

@@ -1,0 +1,78 @@
+name: Lint
+
+# Everything that reads the schema without building anything from it: the
+# spec pin, the two linters, the generator's tests and the house rules. Split
+# from the other workflows so a formatting slip reports as a formatting
+# failure, not somewhere inside a regeneration.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  Lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          submodules: recursive
+
+      - name: Setup Go
+        uses: actions/setup-go@v7
+        with:
+          go-version: "1.26"
+
+      - name: Setup Buf
+        uses: bufbuild/buf-action@v1
+        with:
+          setup_only: true
+
+      - name: Setup Just
+        uses: extractions/setup-just@v3
+
+      # Pinned: the version whose rule sources docs/references.md cites, and
+      # the last release with the per-platform assets coversa's action needs.
+      - name: Install api-linter
+        run: |
+          go install github.com/googleapis/api-linter/v2/cmd/api-linter@v2.3.1
+          echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
+
+      # Every generated banner claims a revision of OpenTravel-Specifications.
+      # If the checkout has moved and the pin has not, every file names a
+      # revision it was not generated from -- which nothing else can see.
+      - name: Check Spec Pin
+        run: just spec
+
+      - name: Check Go Formatting
+        run: test -z "$(gofmt -l sync)" || { gofmt -l sync; exit 1; }
+
+      # Formatting is a gate, not a convenience: `just sync` runs buf format,
+      # so a tree that differs from buf's output was edited by hand.
+      - name: Check Proto Formatting
+        run: buf format --diff --exit-code
+
+      - name: Lint Protos
+        run: buf lint
+
+      - name: Build Descriptor Set
+        run: buf build
+
+      # api-linter exits 0 even when it reports problems; the recipe makes a
+      # non-empty findings table the failure it is. CLAUDE.md rule 1: no rule
+      # is disabled, and there is no api-linter config file.
+      - name: Lint API Design
+        run: just aip
+
+      - name: Build And Test The Generator
+        run: just test
+
+      # 200 lines for Go, 250 for prose; protobuf/ and README.md are exempt.
+      # See docs/generator.md.
+      - name: Check File Length Caps
+        run: just cap

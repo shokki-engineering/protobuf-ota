@@ -1,0 +1,3 @@
+[submodule "opentravel"]
+	path = modules/opentravel
+	url = https://github.com/OpenTravel/OpenTravel-Specifications.git

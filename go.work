@@ -1,0 +1,9 @@
+// Go workspace for this repository.
+//
+// One member, ./sync: the generator, publications in, protobuf out. A codec
+// module will join it when it exists; nothing else belongs here, because a
+// workspace member with nothing to build would be a lie. See
+// docs/generator.md.
+go 1.26
+
+use ./sync

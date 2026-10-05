@@ -1,0 +1,37 @@
+name: Breaking
+
+# Compares the schema against the pull request's base commit, FILE category
+# (buf.yaml).
+#
+# Pull requests only: on a push to main, comparing main to itself is vacuous.
+#
+# A specification bump is exactly when this fires, and a failure here is not
+# automatically wrong -- it is the signal that docs/spec.md needs a history
+# entry describing what consumers must react to.
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  Breaking:
+    name: Breaking Change
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Setup Buf
+        uses: bufbuild/buf-action@v1
+        with:
+          setup_only: true
+
+      # Against the local checkout by commit SHA: a SHA resolves where a
+      # branch name may never have been fetched, and needs no credentials.
+      - name: Compare Against Base Commit
+        run: buf breaking --against ".git#ref=${{ github.event.pull_request.base.sha }}"

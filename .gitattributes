@@ -1,5 +1,7 @@
-# Map custom extension to Protocol Buffer
-*.protobuf linguist-language=Protocol Buffer
+# The code ledger records the identifier every OpenTravel code was emitted
+# as. A conflict in it means two branches each named a code, and deciding
+# which wins is a compatibility decision -- so git must not guess by merging
+# lines.
+codes.lock -merge
 
-# In case you also have .proto, make sure they’re counted
-*.proto linguist-detectable=true
+*.proto  linguist-detectable=true
