@@ -3082,7 +3082,7 @@ message MeetingRfp {
     // or in a particular implementation.
     //
     // OTA: UniqueID_Group/@ID.
-    string id = 4 [
+    string ota_id = 4 [
       (google.api.field_behavior) = REQUIRED,
       (buf.validate.field).string = {
         min_len: 1

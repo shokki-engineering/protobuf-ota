@@ -501,7 +501,7 @@ message PostEventSiteReport {
     // or in a particular implementation.
     //
     // OTA: UniqueID_Group/@ID.
-    string id = 4 [
+    string ota_id = 4 [
       (google.api.field_behavior) = REQUIRED,
       (buf.validate.field).string = {
         min_len: 1
@@ -1530,7 +1530,7 @@ message PostEventSiteReport {
         //
         // OTA:
         // PostEventSiteReportType/EventDays/EventDay/EventDayFunctions/EventDayFunction/@ID.
-        string id = 12 [
+        string ota_id = 12 [
           (google.api.field_behavior) = OPTIONAL,
           (buf.validate.field).string = {
             min_len: 1

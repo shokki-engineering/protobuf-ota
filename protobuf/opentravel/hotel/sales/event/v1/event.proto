@@ -2800,7 +2800,7 @@ message Event {
           //
           // OTA:
           // EventType/Event/Sites/Site/EventDays/EventDay/EventDayFunctions/EventDayFunction/@ID.
-          string id = 12 [
+          string ota_id = 12 [
             (google.api.field_behavior) = OPTIONAL,
             (buf.validate.field).string = {
               min_len: 1

@@ -43,7 +43,7 @@ message Certification {
   // in a particular implementation.
   //
   // OTA: ID_OptionalGroup/@ID.
-  string id = 2 [
+  string ota_id = 2 [
     (google.api.field_behavior) = OPTIONAL,
     (buf.validate.field).string = {
       min_len: 1

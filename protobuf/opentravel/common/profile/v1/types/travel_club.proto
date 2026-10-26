@@ -188,7 +188,7 @@ message TravelClub {
     // or in a particular implementation.
     //
     // OTA: ID_Group/@ID.
-    string id = 6 [
+    string ota_id = 6 [
       (google.api.field_behavior) = REQUIRED,
       (buf.validate.field).string = {
         min_len: 1

@@ -96,6 +96,12 @@ func (s *scope) fieldName(xmlName, key string, t ftype) string {
 	if reserved[name] {
 		name += "_value"
 	}
+	if name == "id" && s.m.Resource == nil {
+		// A value object's @ID is another system's identifier, kept for the
+		// round trip as a resource's is kept as ota_uid (docs/conventions.md
+		// rule 10). A bare id reads as the row's own key to a store.
+		name = "ota_id"
+	}
 	if name == "id" && s.m.Resource != nil {
 		s.b.errorf("%s: a resource field named id (AIP-148): add a FieldRenames entry", key)
 	}

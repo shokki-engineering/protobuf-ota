@@ -228,7 +228,7 @@ message Phone {
   // in a particular implementation.
   //
   // OTA: ID_OptionalGroup/@ID.
-  string id = 15 [
+  string ota_id = 15 [
     (google.api.field_behavior) = OPTIONAL,
     (buf.validate.field).string = {
       min_len: 1

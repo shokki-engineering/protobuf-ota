@@ -558,7 +558,7 @@ message AreaInfo {
       // database or in a particular implementation.
       //
       // OTA: ID_OptionalGroup/@ID.
-      string id = 28 [
+      string ota_id = 28 [
         (google.api.field_behavior) = OPTIONAL,
         (buf.validate.field).string = {
           min_len: 1
@@ -848,7 +848,7 @@ message AreaInfo {
       // database or in a particular implementation.
       //
       // OTA: ID_OptionalGroup/@ID.
-      string id = 14 [
+      string ota_id = 14 [
         (google.api.field_behavior) = OPTIONAL,
         (buf.validate.field).string = {
           min_len: 1
@@ -1185,7 +1185,7 @@ message AreaInfo {
           // database or in a particular implementation.
           //
           // OTA: ID_OptionalGroup/@ID.
-          string id = 8 [
+          string ota_id = 8 [
             (google.api.field_behavior) = OPTIONAL,
             (buf.validate.field).string = {
               min_len: 1
@@ -1339,7 +1339,7 @@ message AreaInfo {
       // database or in a particular implementation.
       //
       // OTA: ID_OptionalGroup/@ID.
-      string id = 7 [
+      string ota_id = 7 [
         (google.api.field_behavior) = OPTIONAL,
         (buf.validate.field).string = {
           min_len: 1
@@ -1825,7 +1825,7 @@ message AreaInfo {
       // information, this would be the ID stored in the competitor's system).
       //
       // OTA: AreaInfoType/OtherHotels/OtherHotel/@ID.
-      string id = 13 [
+      string ota_id = 13 [
         (google.api.field_behavior) = OPTIONAL,
         (buf.validate.field).string = {
           min_len: 1

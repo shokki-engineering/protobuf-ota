@@ -1842,7 +1842,7 @@ message Customer {
       // Unique identifier of the electronic voucher.
       //
       // OTA: PaymentFormType/Voucher/@Identifier.
-      string id = 7 [
+      string ota_id = 7 [
         (google.api.field_behavior) = OPTIONAL,
         (buf.validate.field).string = {
           min_len: 1
@@ -2197,7 +2197,7 @@ message Customer {
         // database or in a particular implementation.
         //
         // OTA: LoyaltyCertificateGroup/@ID.
-        string id = 1 [
+        string ota_id = 1 [
           (google.api.field_behavior) = OPTIONAL,
           (buf.validate.field).string = {
             min_len: 1

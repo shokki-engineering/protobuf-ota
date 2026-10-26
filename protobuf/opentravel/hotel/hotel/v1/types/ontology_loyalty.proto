@@ -230,7 +230,7 @@ message OntologyLoyalty {
     // Example: 1234567
     //
     // OTA: OntologyLoyaltyType/MemberInfo/@ID.
-    string id = 2 [
+    string ota_id = 2 [
       (google.api.field_behavior) = OPTIONAL,
       (buf.validate.field).string = {pattern: "^[a-zA-Z0-9]{1,32}$"},
       (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,

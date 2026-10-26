@@ -47,7 +47,7 @@ message TransportInfo {
   // Identifier of this transportation method (e.g., flight number).
   //
   // OTA: TransportInfoType/TransportInfo/@ID.
-  string id = 2 [
+  string ota_id = 2 [
     (google.api.field_behavior) = OPTIONAL,
     (buf.validate.field).string = {
       min_len: 1

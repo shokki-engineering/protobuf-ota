@@ -17,6 +17,13 @@ names it as the resource's identity, as it does for `MeetingRoom` and
 whatever that system chose, and must survive a round trip unchanged or every
 re-import duplicates the record. Do not conflate the two.
 
+A value object's `@ID` is the same thing at a smaller scale -- a `Service`
+in a hotel's information, a contact, a multimedia item -- and is `ota_id`.
+A bare `id` would read as the row's own key to every store built over this
+schema, which would then share one row between every hotel that sent the
+same `ID`. `plan.fieldName` applies it to every value-object field that
+would otherwise be named `id`.
+
 The **identifying code** is neither. `HotelCode`, `RatePlanCode`, a guest
 room's `Code` are the last segment of the resource name (rule 7) and appear
 nowhere else in the message. A `UniqueID` element carrying a reservation's
@@ -184,6 +191,7 @@ reports traps, `just survey` checks the two agree.
 | `HotelReferenceGroup/@HotelName` | `display_name` on `Hotel`, `hotel_display_name` elsewhere | AIP-122 `_name` suffix |
 | `HotelReferenceGroup/@ChainName`, `@BrandName` | `chain_display_name`, `brand_display_name` | same |
 | `@ID` on a resource whose identity is a code | `ota_uid` | AIP-148; rule 10's round-trip identifier |
+| `@ID` on a value object | `ota_id` | Rule 10; a bare `id` reads as a stored row's key |
 | `CountryNameType/@Code`, `@Country`, `@CountryCode` | `region_code` | AIP-143. The other `ISO3166` attributes keep their role and drop "country": `BirthCountry` -> `birth_region_code`, `Nationality` -> `nationality_region_code` |
 | `PaymentCardType/@CountryOfIssue` | `issue_region_code` | AIP-140 and AIP-143 |
 | `HotelReservationType/@ResStatus` | `state` or `gds_status_code` in `oneof lifecycle` | `InlineUnions`; verbs per `ActionValues` are methods |
