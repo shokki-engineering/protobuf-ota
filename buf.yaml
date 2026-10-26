@@ -9,6 +9,7 @@ version: v2
 # holds without a redundant directory inside it.
 modules:
   - path: .
+    name: buf.build/shokki-engineering/protobuf-ota
     excludes:
       # modules/ holds the OpenTravel-Specifications checkout. It ships no
       # .proto today, but anything it ever vendored would enter this module
